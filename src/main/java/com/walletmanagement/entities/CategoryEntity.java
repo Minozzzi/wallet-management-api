@@ -3,7 +3,7 @@ package com.walletmanagement.entities;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 
-import com.walletmanagement.entities.common.BaseEntity;
+import com.walletmanagement.entities.shared.BaseEntity;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

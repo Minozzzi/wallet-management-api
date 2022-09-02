@@ -1,4 +1,4 @@
-package com.walletmanagement.entities.common;
+package com.walletmanagement.entities.shared;
 
 import java.time.Instant;
 import java.util.UUID;
