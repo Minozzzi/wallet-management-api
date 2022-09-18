@@ -1,7 +1,6 @@
 package com.walletmanagement.category.dto;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
+import java.util.UUID;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -10,10 +9,9 @@ import lombok.Setter;
 @Getter
 @Setter
 @RequiredArgsConstructor
-public class CreateCategoryDto {
+public class CreateCategoryResponseDto {
 
-  @NotNull
-  @NotBlank
+  private UUID id;
   private String name;
 
 }
