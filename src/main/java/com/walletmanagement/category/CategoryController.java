@@ -1,13 +1,16 @@
 package com.walletmanagement.category;
 
 import java.util.List;
+import java.util.UUID;
 
 import javax.validation.Valid;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +20,7 @@ import com.walletmanagement.category.dto.CreateCategoryDto;
 import com.walletmanagement.category.dto.CreateCategoryResponseDto;
 import com.walletmanagement.category.dto.ListAllCategoryResponseDto;
 import com.walletmanagement.category.services.CreateCategoryService;
+import com.walletmanagement.category.services.DeleteCategoryService;
 import com.walletmanagement.category.services.ListAllCategoryService;
 import com.walletmanagement.entities.CategoryEntity;
 
@@ -25,6 +29,7 @@ import com.walletmanagement.entities.CategoryEntity;
 public record CategoryController(
     ModelMapper mapper,
     CreateCategoryService createCategoryService,
+    DeleteCategoryService deleteCategoryService,
     ListAllCategoryService listAllCategoryService) {
 
   @PostMapping
@@ -34,6 +39,12 @@ public record CategoryController(
     CreateCategoryResponseDto response = mapper.map(createdCategory, CreateCategoryResponseDto.class);
 
     return ResponseEntity.status(HttpStatus.CREATED).body(response);
+  }
+
+  @DeleteMapping("{id}")
+  public ResponseEntity<Void> delete(@PathVariable UUID id) {
+    deleteCategoryService.execute(id);
+    return ResponseEntity.noContent().build();
   }
 
   @GetMapping("all")
