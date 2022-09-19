@@ -10,7 +10,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @RequiredArgsConstructor
-public class CreateCategoryDto {
+public class CreateUpdateCategoryDto {
 
   @NotNull
   @NotBlank
