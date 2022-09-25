@@ -5,8 +5,6 @@ import java.util.UUID;
 
 import javax.validation.Valid;
 
-import org.modelmapper.ModelMapper;
-import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -23,61 +21,43 @@ import com.walletmanagement.category.dto.CreateUpdateCategoryDto;
 import com.walletmanagement.category.dto.ListAllCategoryResponseDto;
 import com.walletmanagement.category.dto.ListCategoryDto;
 import com.walletmanagement.category.dto.ListCategoryResponseDto;
-import com.walletmanagement.category.services.CreateUpdateCategoryService;
+import com.walletmanagement.category.services.CreateCategoryService;
 import com.walletmanagement.category.services.DeleteCategoryService;
 import com.walletmanagement.category.services.ListAllCategoryService;
 import com.walletmanagement.category.services.ListCategoryService;
-import com.walletmanagement.entities.CategoryEntity;
+import com.walletmanagement.category.services.UpdateCategoryService;
 import com.walletmanagement.shared.dto.PaginationDto;
 import com.walletmanagement.shared.dto.PaginationResponseDto;
 
 @RestController
 @RequestMapping("category")
 public record CategoryController(
-    ModelMapper mapper,
-    CreateUpdateCategoryService createCategoryService,
+    CreateCategoryService createUpdateCategoryService,
+    UpdateCategoryService updateCategoryService,
     ListCategoryService listCategoryService,
     ListAllCategoryService listAllCategoryService,
     DeleteCategoryService deleteCategoryService) {
 
   @PostMapping
   public ResponseEntity<CreateCategoryResponseDto> create(@Valid @RequestBody CreateUpdateCategoryDto dto) {
-    CategoryEntity category = mapper.map(dto, CategoryEntity.class);
-    CategoryEntity createdCategory = createCategoryService.execute(category);
-    CreateCategoryResponseDto response = mapper.map(createdCategory, CreateCategoryResponseDto.class);
-
-    return ResponseEntity.status(HttpStatus.CREATED).body(response);
+    return ResponseEntity.status(HttpStatus.CREATED).body(createUpdateCategoryService.execute(dto));
   }
 
   @PatchMapping("{id}")
   public ResponseEntity<Void> update(@PathVariable UUID id, @Valid @RequestBody CreateUpdateCategoryDto dto) {
-    CategoryEntity category = mapper.map(dto, CategoryEntity.class);
-    createCategoryService.execute(category);
-
+    updateCategoryService.execute(id, dto);
     return ResponseEntity.noContent().build();
   }
 
   @GetMapping
   public ResponseEntity<PaginationResponseDto<ListCategoryResponseDto>> list(PaginationDto pagination,
       ListCategoryDto filters) {
-    Page<CategoryEntity> paginatedCategories = listCategoryService.execute(pagination, filters);
-    List<ListCategoryResponseDto> categories = paginatedCategories.getContent().stream()
-        .map(category -> mapper.map(category, ListCategoryResponseDto.class))
-        .toList();
-
-    PaginationResponseDto<ListCategoryResponseDto> response = new PaginationResponseDto<>(
-        categories, paginatedCategories.getTotalPages());
-    return ResponseEntity.ok(response);
+    return ResponseEntity.ok(listCategoryService.execute(pagination, filters));
   }
 
   @GetMapping("all")
   public ResponseEntity<List<ListAllCategoryResponseDto>> listAll() {
-    List<CategoryEntity> categories = listAllCategoryService.execute();
-    List<ListAllCategoryResponseDto> response = categories.stream()
-        .map(category -> mapper.map(category, ListAllCategoryResponseDto.class))
-        .toList();
-
-    return ResponseEntity.ok(response);
+    return ResponseEntity.ok(listAllCategoryService.execute());
   }
 
   @DeleteMapping("{id}")

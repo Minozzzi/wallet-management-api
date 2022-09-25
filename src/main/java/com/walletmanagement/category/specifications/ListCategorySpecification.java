@@ -1,4 +1,4 @@
-package com.walletmanagement.category.specification;
+package com.walletmanagement.category.specifications;
 
 import static org.springframework.data.jpa.domain.Specification.where;
 
