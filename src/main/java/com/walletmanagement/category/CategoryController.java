@@ -21,13 +21,14 @@ import org.springframework.web.bind.annotation.RestController;
 import com.walletmanagement.category.dto.CreateCategoryResponseDto;
 import com.walletmanagement.category.dto.CreateUpdateCategoryDto;
 import com.walletmanagement.category.dto.ListAllCategoryResponseDto;
+import com.walletmanagement.category.dto.ListCategoryDto;
 import com.walletmanagement.category.dto.ListCategoryResponseDto;
 import com.walletmanagement.category.services.CreateUpdateCategoryService;
 import com.walletmanagement.category.services.DeleteCategoryService;
 import com.walletmanagement.category.services.ListAllCategoryService;
 import com.walletmanagement.category.services.ListCategoryService;
 import com.walletmanagement.entities.CategoryEntity;
-import com.walletmanagement.shared.dto.PaginationAndFiltersDto;
+import com.walletmanagement.shared.dto.PaginationDto;
 import com.walletmanagement.shared.dto.PaginationResponseDto;
 
 @RestController
@@ -57,8 +58,9 @@ public record CategoryController(
   }
 
   @GetMapping
-  public ResponseEntity<PaginationResponseDto<ListCategoryResponseDto>> list(PaginationAndFiltersDto query) {
-    Page<CategoryEntity> paginatedCategories = listCategoryService.execute(query);
+  public ResponseEntity<PaginationResponseDto<ListCategoryResponseDto>> list(PaginationDto pagination,
+      ListCategoryDto filters) {
+    Page<CategoryEntity> paginatedCategories = listCategoryService.execute(pagination, filters);
     List<ListCategoryResponseDto> categories = paginatedCategories.getContent().stream()
         .map(category -> mapper.map(category, ListCategoryResponseDto.class))
         .toList();
