@@ -33,6 +33,8 @@ public record ListCategoryService(CategoryRepository categoryRepository,
 
     Page<CategoryEntity> paginatedCategories = categoryRepository.findAll(specification, pageable);
 
+    Page<CategoryEntity> paginatedCategories = categoryRepository.findAll(specification, pageable);
+
     return new PaginationResponseDto<>(
         paginatedCategories.getContent().stream()
             .map(category -> mapper.map(category, ListCategoryResponseDto.class))
