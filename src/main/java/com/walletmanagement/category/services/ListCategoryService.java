@@ -21,9 +21,14 @@ public record ListCategoryService(CategoryRepository categoryRepository,
     ListCategorySpecification listCategorySpecification, ModelMapper mapper) {
 
   public PaginationResponseDto<ListCategoryResponseDto> execute(PaginationDto pagination, ListCategoryDto filters) {
-    Pageable pageable = PageRequest.of(pagination.getPage(), pagination.getPerPage(),
-        Boolean.TRUE.equals(pagination.getIsAsc()) ? Sort.Direction.ASC : Sort.Direction.DESC,
-        pagination.getSortField());
+    Pageable pageable = PageRequest.of(pagination.getPage(), pagination.getPerPage());
+
+    if (pagination.getSortField() != null) {
+      pageable = PageRequest.of(pagination.getPage(), pagination.getPerPage(),
+          pagination.getIsAsc() ? Sort.by(pagination.getSortField()).ascending()
+              : Sort.by(pagination.getSortField()).descending());
+    }
+
     Specification<CategoryEntity> specification = listCategorySpecification.getFilter(filters);
 
     Page<CategoryEntity> paginatedCategories = categoryRepository.findAll(specification, pageable);
