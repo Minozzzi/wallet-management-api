@@ -52,8 +52,6 @@ public record CategoryController(
   @GetMapping
   public ResponseEntity<PaginationResponseDto<ListCategoryResponseDto>> list(PaginationDto pagination,
       ListCategoryDto filters) {
-    // TODO @Minozzzi 2022-09-26: Refactor this to use the -1 generic setter
-    pagination.setPage(pagination.getPage() - 1);
     return ResponseEntity.ok(listCategoryService.execute(pagination, filters));
   }
 
