@@ -1,21 +1,31 @@
 package com.walletmanagement.category.services;
 
-import org.modelmapper.ModelMapper;
+import java.util.UUID;
+
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
+import com.walletmanagement.bases.services.BaseCreateService;
 import com.walletmanagement.category.CategoryRepository;
 import com.walletmanagement.category.dto.CreateCategoryResponseDto;
 import com.walletmanagement.category.dto.CreateUpdateCategoryDto;
 import com.walletmanagement.entities.CategoryEntity;
 
 @Service
-public record CreateCategoryService(
-    CategoryRepository categoryRepository, ModelMapper mapper) {
+public class CreateCategoryService
+    extends BaseCreateService<CategoryEntity, CreateUpdateCategoryDto, CreateCategoryResponseDto, UUID>
+    implements ICreateCategoryService {
 
-  public CreateCategoryResponseDto execute(CreateUpdateCategoryDto dtoCategory) {
-    CategoryEntity category = mapper.map(dtoCategory, CategoryEntity.class);
-    CategoryEntity createdCategory = categoryRepository.save(category);
-    return mapper.map(createdCategory, CreateCategoryResponseDto.class);
+  private final CategoryRepository categoryRepository;
+
+  public CreateCategoryService(CategoryRepository categoryRepository) {
+    super(CategoryEntity.class, CreateCategoryResponseDto.class);
+    this.categoryRepository = categoryRepository;
+  }
+
+  @Override
+  protected JpaRepository<CategoryEntity, UUID> getRepository() {
+    return categoryRepository;
   }
 
 }
