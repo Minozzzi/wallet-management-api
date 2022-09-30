@@ -5,7 +5,7 @@ import java.util.UUID;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
-import com.walletmanagement.bases.services.BaseCreateService;
+import com.walletmanagement.bases.services.create.BaseCreateService;
 import com.walletmanagement.category.CategoryRepository;
 import com.walletmanagement.category.dto.CreateCategoryResponseDto;
 import com.walletmanagement.category.dto.CreateUpdateCategoryDto;
