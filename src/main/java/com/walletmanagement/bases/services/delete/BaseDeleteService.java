@@ -6,10 +6,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.walletmanagement.entities.base.BaseEntity;
 
-public abstract class BaseDeleteService<E extends BaseEntity, R extends JpaRepository<E, UUID>>
+public abstract class BaseDeleteService<E extends BaseEntity>
     implements IBaseDeleteService {
 
-  protected abstract R getRepository();
+  protected abstract JpaRepository<E, UUID> getRepository();
 
   protected BaseDeleteService() {
   }
