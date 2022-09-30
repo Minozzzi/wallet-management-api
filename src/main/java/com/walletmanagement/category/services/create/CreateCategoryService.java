@@ -1,4 +1,4 @@
-package com.walletmanagement.category.services;
+package com.walletmanagement.category.services.create;
 
 import java.util.UUID;
 

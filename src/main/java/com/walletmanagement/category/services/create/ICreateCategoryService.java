@@ -1,4 +1,4 @@
-package com.walletmanagement.category.services;
+package com.walletmanagement.category.services.create;
 
 import com.walletmanagement.bases.services.IBaseCreateService;
 import com.walletmanagement.category.dto.CreateCategoryResponseDto;
