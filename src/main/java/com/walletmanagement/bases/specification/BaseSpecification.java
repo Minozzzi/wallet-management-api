@@ -1,4 +1,4 @@
-package com.walletmanagement.shared.specification;
+package com.walletmanagement.bases.specification;
 
 import org.springframework.data.jpa.domain.Specification;
 
