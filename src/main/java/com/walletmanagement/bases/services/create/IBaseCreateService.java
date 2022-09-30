@@ -1,4 +1,4 @@
-package com.walletmanagement.bases.services;
+package com.walletmanagement.bases.services.create;
 
 public interface IBaseCreateService<D, R> {
 
