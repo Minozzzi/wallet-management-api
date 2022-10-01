@@ -1,25 +1,65 @@
 package com.walletmanagement.category;
 
-import javax.validation.Valid;
-
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.walletmanagement.category.dto.CreateCategoryDto;
-import com.walletmanagement.category.services.CreateCategoryService;
-import com.walletmanagement.entities.CategoryEntity;
+import com.walletmanagement.bases.controllers.BaseController;
+import com.walletmanagement.bases.services.create.IBaseCreateService;
+import com.walletmanagement.bases.services.delete.IBaseDeleteService;
+import com.walletmanagement.bases.services.list.IBaseListService;
+import com.walletmanagement.bases.services.listAll.IBaseListAllService;
+import com.walletmanagement.bases.services.update.IBaseUpdateService;
+import com.walletmanagement.category.dto.CreateCategoryResponseDto;
+import com.walletmanagement.category.dto.CreateUpdateCategoryDto;
+import com.walletmanagement.category.dto.ListAllCategoryResponseDto;
+import com.walletmanagement.category.dto.ListCategoryDto;
+import com.walletmanagement.category.dto.ListCategoryResponseDto;
 
 @RestController
 @RequestMapping("category")
-public record CategoryController(CreateCategoryService createCategoryService) {
+public class CategoryController extends
+    BaseController<CreateUpdateCategoryDto, CreateCategoryResponseDto, ListCategoryDto, ListCategoryResponseDto, ListAllCategoryResponseDto> {
 
-  @PostMapping
-  public ResponseEntity<CategoryEntity> create(@Valid @RequestBody CreateCategoryDto dto) {
-    return ResponseEntity.status(HttpStatus.CREATED).body(createCategoryService.execute(dto.toEntity()));
+  private final IBaseCreateService<CreateUpdateCategoryDto, CreateCategoryResponseDto> createService;
+  private final IBaseUpdateService<CreateUpdateCategoryDto> updateService;
+  private final IBaseListService<ListCategoryDto, ListCategoryResponseDto> listService;
+  private final IBaseListAllService<ListAllCategoryResponseDto> listAllService;
+  private final IBaseDeleteService deleteService;
+
+  public CategoryController(IBaseCreateService<CreateUpdateCategoryDto, CreateCategoryResponseDto> createService,
+      IBaseUpdateService<CreateUpdateCategoryDto> updateService,
+      IBaseListService<ListCategoryDto, ListCategoryResponseDto> listService,
+      IBaseListAllService<ListAllCategoryResponseDto> listAllService, IBaseDeleteService deleteService) {
+    this.createService = createService;
+    this.updateService = updateService;
+    this.listService = listService;
+    this.listAllService = listAllService;
+    this.deleteService = deleteService;
+  }
+
+  @Override
+  protected IBaseCreateService<CreateUpdateCategoryDto, CreateCategoryResponseDto> getCreateService() {
+    return createService;
+  }
+
+  @Override
+  protected IBaseUpdateService<CreateUpdateCategoryDto> getUpdateService() {
+    return updateService;
+  }
+
+  @Override
+  protected IBaseListService<ListCategoryDto, ListCategoryResponseDto> getListService() {
+    return listService;
+  }
+
+  @Override
+  protected IBaseListAllService<ListAllCategoryResponseDto> getListAllService() {
+    return listAllService;
+  }
+
+  @Override
+  protected IBaseDeleteService getDeleteService() {
+    return deleteService;
   }
 
 }
