@@ -5,9 +5,9 @@ import static org.springframework.data.jpa.domain.Specification.where;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
 
+import com.walletmanagement.bases.specification.BaseSpecification;
 import com.walletmanagement.category.dto.ListCategoryDto;
 import com.walletmanagement.entities.CategoryEntity;
-import com.walletmanagement.shared.specification.BaseSpecification;
 
 @Component
 public class ListCategorySpecification extends BaseSpecification<CategoryEntity, ListCategoryDto> {
