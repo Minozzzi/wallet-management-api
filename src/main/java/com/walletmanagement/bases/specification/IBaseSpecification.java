@@ -8,4 +8,8 @@ public interface IBaseSpecification<E extends BaseEntity> {
 
   public Specification<E> entityAttributeContains(String attribute, String value);
 
+  public Specification<E> entityAttributeContains(String attribute, Boolean value);
+
+  public <T> Specification<E> entityAttributeContains(String attribute, T value);
+
 }
