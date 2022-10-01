@@ -23,7 +23,7 @@ public abstract class BaseSpecification<E extends BaseEntity, D> implements IBas
     };
   }
 
-  @Override 
+  @Override
   public Specification<E> entityAttributeContains(String attribute, Boolean value) {
     return (root, query, cb) -> {
       if (value == null) {
