@@ -2,13 +2,16 @@ package com.walletmanagement.bases.specification;
 
 import org.springframework.data.jpa.domain.Specification;
 
-public abstract class BaseSpecification<T, U> {
+import com.walletmanagement.entities.base.BaseEntity;
+
+public abstract class BaseSpecification<E extends BaseEntity, D> implements IBaseSpecification<E> {
 
   private static final String WILDCARD = "%";
 
-  public abstract Specification<T> getFilter(U request);
+  public abstract Specification<E> getFilter(D request);
 
-  public Specification<T> entityAttributeContains(String attribute, String value) {
+  @Override
+  public Specification<E> entityAttributeContains(String attribute, String value) {
     return (root, query, cb) -> {
       if (value == null) {
         return null;
