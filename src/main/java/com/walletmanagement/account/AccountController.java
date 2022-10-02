@@ -20,46 +20,46 @@ import com.walletmanagement.bases.services.update.IBaseUpdateService;
 public class AccountController extends
     BaseController<CreateUpdateAccountDto, CreateAccountResponseDto, ListAccountDto, ListAccountResponseDto, ListAllAccountResponseDto> {
 
-  private final IBaseCreateService<CreateUpdateAccountDto, CreateAccountResponseDto> createService;
-  private final IBaseUpdateService<CreateUpdateAccountDto> updateService;
-  private final IBaseListService<ListAccountDto, ListAccountResponseDto> listService;
-  private final IBaseListAllService<ListAllAccountResponseDto> listAllService;
-  private final IBaseDeleteService deleteService;
+  private final IBaseCreateService<CreateUpdateAccountDto, CreateAccountResponseDto> createAccountService;
+  private final IBaseUpdateService<CreateUpdateAccountDto> updateAccountService;
+  private final IBaseListService<ListAccountDto, ListAccountResponseDto> listAccountService;
+  private final IBaseListAllService<ListAllAccountResponseDto> listAllAccountService;
+  private final IBaseDeleteService deleteAccountService;
 
-  public AccountController(IBaseCreateService<CreateUpdateAccountDto, CreateAccountResponseDto> createService,
-      IBaseUpdateService<CreateUpdateAccountDto> updateService,
-      IBaseListService<ListAccountDto, ListAccountResponseDto> listService,
-      IBaseListAllService<ListAllAccountResponseDto> listAllService, IBaseDeleteService deleteService) {
-    this.createService = createService;
-    this.updateService = updateService;
-    this.listService = listService;
-    this.listAllService = listAllService;
-    this.deleteService = deleteService;
+  public AccountController(IBaseCreateService<CreateUpdateAccountDto, CreateAccountResponseDto> createAccountService,
+      IBaseUpdateService<CreateUpdateAccountDto> updateAccountService,
+      IBaseListService<ListAccountDto, ListAccountResponseDto> listAccountService,
+      IBaseListAllService<ListAllAccountResponseDto> listAllAccountService, IBaseDeleteService deleteAccountService) {
+    this.createAccountService = createAccountService;
+    this.updateAccountService = updateAccountService;
+    this.listAccountService = listAccountService;
+    this.listAllAccountService = listAllAccountService;
+    this.deleteAccountService = deleteAccountService;
   }
 
   @Override
   protected IBaseCreateService<CreateUpdateAccountDto, CreateAccountResponseDto> getCreateService() {
-    return createService;
+    return createAccountService;
   }
 
   @Override
   protected IBaseUpdateService<CreateUpdateAccountDto> getUpdateService() {
-    return updateService;
+    return updateAccountService;
   }
 
   @Override
   protected IBaseListService<ListAccountDto, ListAccountResponseDto> getListService() {
-    return listService;
+    return listAccountService;
   }
 
   @Override
   protected IBaseListAllService<ListAllAccountResponseDto> getListAllService() {
-    return listAllService;
+    return listAllAccountService;
   }
 
   @Override
   protected IBaseDeleteService getDeleteService() {
-    return deleteService;
+    return deleteAccountService;
   }
 
 }
