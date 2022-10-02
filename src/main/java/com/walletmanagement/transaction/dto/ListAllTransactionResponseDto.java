@@ -9,7 +9,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @RequiredArgsConstructor
-public class ListAllTransactionResponse {
+public class ListAllTransactionResponseDto {
 
   private UUID id;
   private String description;
