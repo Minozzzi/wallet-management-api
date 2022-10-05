@@ -20,46 +20,46 @@ import com.walletmanagement.category.dto.ListCategoryResponseDto;
 public class CategoryController extends
     BaseController<CreateUpdateCategoryDto, CreateCategoryResponseDto, ListCategoryDto, ListCategoryResponseDto, ListAllCategoryResponseDto> {
 
-  private final IBaseCreateService<CreateUpdateCategoryDto, CreateCategoryResponseDto> createService;
-  private final IBaseUpdateService<CreateUpdateCategoryDto> updateService;
-  private final IBaseListService<ListCategoryDto, ListCategoryResponseDto> listService;
-  private final IBaseListAllService<ListAllCategoryResponseDto> listAllService;
-  private final IBaseDeleteService deleteService;
+  private final IBaseCreateService<CreateUpdateCategoryDto, CreateCategoryResponseDto> createCategoryService;
+  private final IBaseUpdateService<CreateUpdateCategoryDto> updateCategoryService;
+  private final IBaseListService<ListCategoryDto, ListCategoryResponseDto> listCategoryService;
+  private final IBaseListAllService<ListAllCategoryResponseDto> listAllCategoryService;
+  private final IBaseDeleteService deleteCategoryService;
 
-  public CategoryController(IBaseCreateService<CreateUpdateCategoryDto, CreateCategoryResponseDto> createService,
-      IBaseUpdateService<CreateUpdateCategoryDto> updateService,
-      IBaseListService<ListCategoryDto, ListCategoryResponseDto> listService,
-      IBaseListAllService<ListAllCategoryResponseDto> listAllService, IBaseDeleteService deleteService) {
-    this.createService = createService;
-    this.updateService = updateService;
-    this.listService = listService;
-    this.listAllService = listAllService;
-    this.deleteService = deleteService;
+  public CategoryController(IBaseCreateService<CreateUpdateCategoryDto, CreateCategoryResponseDto> createCategoryService,
+      IBaseUpdateService<CreateUpdateCategoryDto> updateCategoryService,
+      IBaseListService<ListCategoryDto, ListCategoryResponseDto> listCategoryService,
+      IBaseListAllService<ListAllCategoryResponseDto> listAllCategoryService, IBaseDeleteService deleteCategoryService) {
+    this.createCategoryService = createCategoryService;
+    this.updateCategoryService = updateCategoryService;
+    this.listCategoryService = listCategoryService;
+    this.listAllCategoryService = listAllCategoryService;
+    this.deleteCategoryService = deleteCategoryService;
   }
 
   @Override
   protected IBaseCreateService<CreateUpdateCategoryDto, CreateCategoryResponseDto> getCreateService() {
-    return createService;
+    return createCategoryService;
   }
 
   @Override
   protected IBaseUpdateService<CreateUpdateCategoryDto> getUpdateService() {
-    return updateService;
+    return updateCategoryService;
   }
 
   @Override
   protected IBaseListService<ListCategoryDto, ListCategoryResponseDto> getListService() {
-    return listService;
+    return listCategoryService;
   }
 
   @Override
   protected IBaseListAllService<ListAllCategoryResponseDto> getListAllService() {
-    return listAllService;
+    return listAllCategoryService;
   }
 
   @Override
   protected IBaseDeleteService getDeleteService() {
-    return deleteService;
+    return deleteCategoryService;
   }
 
 }
