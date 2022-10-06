@@ -23,11 +23,11 @@ import lombok.experimental.SuperBuilder;
 @Entity(name = "transaction")
 public class TransactionEntity extends BaseEntity {
 
-  @ManyToOne(cascade = CascadeType.ALL)
+  @ManyToOne()
   @JoinColumn(name = "account_id")
   private AccountEntity account;
 
-  @ManyToOne(cascade = CascadeType.ALL)
+  @ManyToOne()
   @JoinColumn(name = "category_id")
   private CategoryEntity category;
   
