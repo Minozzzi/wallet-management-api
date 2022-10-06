@@ -23,7 +23,6 @@ public class CreateUpdateAccountDto {
   private String description;
 
   @NotNull
-  @NotBlank
   private AccountTypeEnum type;
 
   @NotNull

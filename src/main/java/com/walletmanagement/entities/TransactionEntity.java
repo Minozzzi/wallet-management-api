@@ -2,6 +2,7 @@ package com.walletmanagement.entities;
 
 import java.time.Instant;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -22,11 +23,11 @@ import lombok.experimental.SuperBuilder;
 @Entity(name = "transaction")
 public class TransactionEntity extends BaseEntity {
 
-  @ManyToOne()
+  @ManyToOne(cascade = CascadeType.ALL)
   @JoinColumn(name = "account_id")
   private AccountEntity account;
 
-  @ManyToOne()
+  @ManyToOne(cascade = CascadeType.ALL)
   @JoinColumn(name = "category_id")
   private CategoryEntity category;
   

@@ -42,8 +42,7 @@ public class WebSecurity {
         .authenticationEntryPoint(authenticationEntryPoint)
         .and()
         .authorizeRequests()
-
-        .antMatchers(HttpMethod.POST, "/users/**").permitAll()
+        .antMatchers(HttpMethod.POST, "/user/**").permitAll()
         .antMatchers("/error/**").permitAll()
         .anyRequest().authenticated()
         .and()

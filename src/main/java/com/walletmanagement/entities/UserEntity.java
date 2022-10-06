@@ -23,7 +23,7 @@ import lombok.experimental.SuperBuilder;
 @Getter
 @Setter
 @RequiredArgsConstructor
-@Entity(name = "user")
+@Entity(name = "users")
 public class UserEntity extends BaseEntity implements UserDetails {
 
   @Column

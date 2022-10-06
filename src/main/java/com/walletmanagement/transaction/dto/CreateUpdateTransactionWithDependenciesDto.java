@@ -1,28 +1,31 @@
 package com.walletmanagement.transaction.dto;
 
 import java.util.Date;
-import java.util.UUID;
 
 import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PastOrPresent;
 
+import com.walletmanagement.entities.AccountEntity;
+import com.walletmanagement.entities.CategoryEntity;
 import com.walletmanagement.entities.enums.TransactionTypeEnum;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
-@RequiredArgsConstructor
-public class CreateUpdateTransactionDto {
+@AllArgsConstructor
+@Builder
+public class CreateUpdateTransactionWithDependenciesDto {
 
   @NotNull
-  private UUID accountId;
+  private AccountEntity account;
 
   @NotNull
-  private UUID categoryId;
+  private CategoryEntity category;
 
   @NotNull
   @FutureOrPresent
