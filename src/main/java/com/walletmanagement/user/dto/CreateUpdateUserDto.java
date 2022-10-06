@@ -3,6 +3,8 @@ package com.walletmanagement.user.dto;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+import com.walletmanagement.shared.validations.uniqueUsername.UniqueUsername;
+
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -14,6 +16,7 @@ public class CreateUpdateUserDto {
 
   @NotNull
   @NotBlank
+  @UniqueUsername
   private String username;
 
   @NotNull
