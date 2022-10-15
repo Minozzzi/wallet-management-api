@@ -1,7 +1,5 @@
 package com.walletmanagement.entities;
 
-import java.util.UUID;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 
@@ -31,9 +29,5 @@ public class AccountEntity extends BaseEntity {
 
   @Column
   private Boolean includeInDashboard;
-
-  public AccountEntity(UUID id) {
-    super(id);
-  }
 
 }

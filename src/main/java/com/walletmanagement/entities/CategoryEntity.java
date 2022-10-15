@@ -1,7 +1,5 @@
 package com.walletmanagement.entities;
 
-import java.util.UUID;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 
@@ -21,9 +19,5 @@ public class CategoryEntity extends BaseEntity {
 
   @Column
   private String name;
-
-  public CategoryEntity(UUID id) {
-    super(id);
-  }
 
 }
