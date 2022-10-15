@@ -1,8 +1,7 @@
 package com.walletmanagement.entities;
 
-import java.time.Instant;
+import java.time.LocalDateTime;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -30,13 +29,13 @@ public class TransactionEntity extends BaseEntity {
   @ManyToOne()
   @JoinColumn(name = "category_id")
   private CategoryEntity category;
-  
-  @Column
-  private Instant dueDate;
 
   @Column
-  private Instant paymentDate;
-  
+  private LocalDateTime dueDate;
+
+  @Column
+  private LocalDateTime paymentDate;
+
   @Column
   private Double amount;
 

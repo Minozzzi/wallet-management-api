@@ -3,7 +3,7 @@ package com.walletmanagement.shared.validations.uniqueUsername;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-import com.walletmanagement.user.UserRepository;
+import com.walletmanagement.modules.user.UserRepository;
 
 public class UniqueUsernameValidator implements ConstraintValidator<UniqueUsername, String> {
 

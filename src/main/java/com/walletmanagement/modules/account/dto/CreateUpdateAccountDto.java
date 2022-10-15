@@ -1,33 +1,31 @@
-package com.walletmanagement.entities;
+package com.walletmanagement.modules.account.dto;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
-import com.walletmanagement.entities.base.BaseEntity;
 import com.walletmanagement.entities.enums.AccountTypeEnum;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
-import lombok.experimental.SuperBuilder;
 
-@SuperBuilder
 @Getter
 @Setter
 @RequiredArgsConstructor
-@Entity(name = "account")
-public class AccountEntity extends BaseEntity {
+public class CreateUpdateAccountDto {
 
-  @Column
+  @NotNull
+  @NotBlank
   private String bankingCode;
 
-  @Column
+  @NotNull
+  @NotBlank
   private String description;
 
-  @Column
+  @NotNull
   private AccountTypeEnum type;
 
-  @Column
+  @NotNull
   private Boolean includeInDashboard;
 
 }

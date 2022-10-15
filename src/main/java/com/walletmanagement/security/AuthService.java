@@ -6,7 +6,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.walletmanagement.entities.UserEntity;
-import com.walletmanagement.user.UserRepository;
+import com.walletmanagement.modules.user.UserRepository;
 
 import lombok.RequiredArgsConstructor;
 

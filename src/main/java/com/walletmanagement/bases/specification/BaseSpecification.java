@@ -24,17 +24,6 @@ public abstract class BaseSpecification<E extends BaseEntity, D> implements IBas
   }
 
   @Override
-  public Specification<E> entityAttributeContains(String attribute, Boolean value) {
-    return (root, query, cb) -> {
-      if (value == null) {
-        return null;
-      }
-
-      return cb.equal(root.get(attribute), value);
-    };
-  }
-
-  @Override
   public <T> Specification<E> entityAttributeContains(String attribute, T value) {
     return (root, query, cb) -> {
       if (value == null) {
