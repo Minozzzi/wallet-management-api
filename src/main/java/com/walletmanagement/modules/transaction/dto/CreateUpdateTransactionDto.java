@@ -1,6 +1,6 @@
 package com.walletmanagement.modules.transaction.dto;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 import javax.validation.constraints.FutureOrPresent;
@@ -26,11 +26,11 @@ public class CreateUpdateTransactionDto {
 
   @NotNull
   @FutureOrPresent
-  private Date dueDate;
+  private LocalDateTime dueDate;
 
   @NotNull
   @PastOrPresent
-  private Date paymentDate;
+  private LocalDateTime paymentDate;
 
   @NotNull
   private Double amount;

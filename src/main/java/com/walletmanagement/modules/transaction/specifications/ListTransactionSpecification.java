@@ -2,7 +2,7 @@ package com.walletmanagement.modules.transaction.specifications;
 
 import static org.springframework.data.jpa.domain.Specification.where;
 
-import java.time.Instant;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 import org.springframework.data.jpa.domain.Specification;
@@ -41,11 +41,11 @@ public class ListTransactionSpecification extends BaseSpecification<TransactionE
     return this.entityAttributeContains("category_id", categoryId);
   }
 
-  private Specification<TransactionEntity> dueDateContains(Instant dueDate) {
+  private Specification<TransactionEntity> dueDateContains(LocalDateTime dueDate) {
     return this.entityAttributeContains("dueDate", dueDate);
   }
 
-  private Specification<TransactionEntity> paymentDateContains(Instant paymentDate) {
+  private Specification<TransactionEntity> paymentDateContains(LocalDateTime paymentDate) {
     return this.entityAttributeContains("paymentDate", paymentDate);
   }
 

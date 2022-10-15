@@ -1,6 +1,6 @@
 package com.walletmanagement.modules.transaction.dto;
 
-import java.time.Instant;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 import com.walletmanagement.entities.AccountEntity;
@@ -19,8 +19,8 @@ public class CreateTransactionResponseDto {
   private UUID id;
   private AccountEntity account;
   private CategoryEntity category;
-  private Instant dueDate;
-  private Instant paymentDate;
+  private LocalDateTime dueDate;
+  private LocalDateTime paymentDate;
   private Double amount;
   private Double amountPaid;
   private String description;

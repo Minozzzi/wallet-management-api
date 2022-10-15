@@ -1,6 +1,6 @@
 package com.walletmanagement.modules.transaction.dto;
 
-import java.time.Instant;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 import com.walletmanagement.entities.enums.TransactionTypeEnum;
@@ -16,8 +16,8 @@ public class ListTransactionDto {
 
   private UUID accountId;
   private UUID categoryId;
-  private Instant dueDate;
-  private Instant paymentDate;
+  private LocalDateTime dueDate;
+  private LocalDateTime paymentDate;
   private Double amount;
   private Double amountPaid;
   private String description;
