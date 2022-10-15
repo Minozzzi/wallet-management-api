@@ -5,7 +5,6 @@ import java.util.Collection;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Transient;
-import javax.validation.constraints.Pattern;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
@@ -29,8 +28,7 @@ public class UserEntity extends BaseEntity implements UserDetails {
   @Column
   private String username;
 
-  @Column 
-  @Pattern(regexp="^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[$*&@#])[0-9 a-zA-Z$*&@#]{8,}$")
+  @Column
   private String password;
 
   @Column
