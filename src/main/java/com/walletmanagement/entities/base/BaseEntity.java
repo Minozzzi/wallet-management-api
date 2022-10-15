@@ -15,6 +15,8 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import com.walletmanagement.entities.UserEntity;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -43,8 +45,7 @@ public abstract class BaseEntity {
   @LastModifiedDate
   private Instant updatedAt;
 
-  protected BaseEntity(UUID id) {
-    this.id = id;
-  }
+  @Column(name = "created_by")
+  private UserEntity createdBy;
 
 }
