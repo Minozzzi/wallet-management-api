@@ -6,6 +6,8 @@ server:
     context-path: /api/v1
 
 spring:
+  profiles:
+    active: dev
   application:
     name: api
   datasource:
@@ -21,3 +23,12 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
         format_sql: true
+      data:
+        web:
+          pageable:
+            default-page-size: 10
+            max-page-size: 100
+  mvc:
+    pathmatch:
+      matching-strategy: ant-path-matcher
+
