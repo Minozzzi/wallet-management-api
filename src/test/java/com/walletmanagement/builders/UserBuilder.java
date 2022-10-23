@@ -1,7 +1,5 @@
 package com.walletmanagement.builders;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import com.github.javafaker.Faker;
 import com.walletmanagement.modules.user.dto.CreateUpdateUserDto;
 
@@ -10,7 +8,6 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class UserBuilder {
 
-  @Autowired
   private final Faker faker;
 
   public CreateUpdateUserDto validUser() {
