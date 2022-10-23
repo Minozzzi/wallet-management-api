@@ -33,18 +33,31 @@ public class WebSecurity {
     AuthenticationManagerBuilder authenticationManagerBuilder = http
         .getSharedObject(AuthenticationManagerBuilder.class);
 
-    authenticationManagerBuilder.userDetailsService(authService).passwordEncoder(this.passwordEncoder());
+    authenticationManagerBuilder
+        .userDetailsService(authService)
+        .passwordEncoder(this.passwordEncoder());
 
     AuthenticationManager authenticationManager = authenticationManagerBuilder.build();
 
+    http.headers().frameOptions().disable();
     http.csrf().disable()
         .exceptionHandling()
         .authenticationEntryPoint(authenticationEntryPoint)
         .and()
         .authorizeRequests()
-        .antMatchers(HttpMethod.POST, "/user/**").permitAll()
-        .antMatchers("/error/**").permitAll()
-        .anyRequest().authenticated()
+        .antMatchers(HttpMethod.POST, "/user/**")
+        .permitAll()
+        .antMatchers("/error/**")
+        .permitAll()
+        .antMatchers(
+            "/swagger-resources/**",
+            "/swagger-ui.html",
+            "/swagger-ui/**",
+            "/v2/api-docs",
+            "/webjars/**")
+        .permitAll()
+        .anyRequest()
+        .authenticated()
         .and()
         .authenticationManager(authenticationManager)
         .addFilter(new JWTAuthenticationFilter(authenticationManager, authService))
