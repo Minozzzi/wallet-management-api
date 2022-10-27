@@ -1,0 +1,32 @@
+{
+  "name": "migration-manager",
+  "version": "0.0.1",
+  "main": "./lib/index.js",
+  "bin": {
+    "migration": "./lib/index.js"
+  },
+  "author": "Guilherme Minozzi",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "preinstall": "npx only-allow pnpm",
+    "dev": "nodemon --watch 'src/**/*.ts' --exec 'npx tsx' src/index.ts",
+    "build": "tsc -p .",
+    "migration:create": "npx tsx src/create-migration.ts",
+    "migration:execute": "npx tsx src/execute-migration.ts",
+    "refresh-packages": "rm -rf node_modules && pnpm install"
+  },
+  "dependencies": {
+    "chalk": "^5.1.2",
+    "clear": "^0.1.0",
+    "commander": "^9.4.1",
+    "figlet": "^1.5.2",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "@types/node": "^18.11.4",
+    "nodemon": "^2.0.20",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.8.4"
+  }
+}
