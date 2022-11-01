@@ -33,7 +33,7 @@ public class SwaggerLoginListingScanner implements ApiListingScannerPlugin {
     List<RequestParameter> list = new ArrayList<>();
 
     list.add(new RequestParameterBuilder()
-        .name("UserDto")
+        .name("CreateUpdateUserDto")
         .description("{\"username\": \"username\", \"password\": \"password\"}")
         .required(true)
         .in(ParameterType.BODY)

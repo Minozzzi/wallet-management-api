@@ -17,7 +17,7 @@ spring:
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: none
     properties:
       show-sql: true
       hibernate:
@@ -28,6 +28,12 @@ spring:
           pageable:
             default-page-size: 10
             max-page-size: 100
+  flyway:
+    baseline-on-migrate: true
+    locations: classpath:db/migrations
+    url: jdbc:postgresql://db:5432/api
+    user: postgres
+    password: postgres
   mvc:
     pathmatch:
       matching-strategy: ant-path-matcher

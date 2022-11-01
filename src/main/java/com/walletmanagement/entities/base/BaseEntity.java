@@ -8,9 +8,12 @@ import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
 
 import org.hibernate.annotations.Type;
+import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -45,7 +48,9 @@ public abstract class BaseEntity {
   @LastModifiedDate
   private Instant updatedAt;
 
-  @Column(name = "created_by")
+  @CreatedBy
+  @ManyToOne()
+  @JoinColumn(name = "created_by")
   private UserEntity createdBy;
 
 }
