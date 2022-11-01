@@ -13,15 +13,14 @@ import com.walletmanagement.bases.services.create.IBaseCreateService;
 import com.walletmanagement.modules.user.dto.CreateUpdateUserDto;
 import com.walletmanagement.modules.user.dto.CreateUserResponseDto;
 
+import lombok.RequiredArgsConstructor;
+
 @RestController
 @RequestMapping("user")
+@RequiredArgsConstructor
 public class UserController {
 
   private final IBaseCreateService<CreateUpdateUserDto, CreateUserResponseDto> createUserService;
-
-  public UserController(IBaseCreateService<CreateUpdateUserDto, CreateUserResponseDto> createUserService) {
-    this.createUserService = createUserService;
-  }
 
   @PostMapping
   public ResponseEntity<CreateUserResponseDto> create(@Valid @RequestBody CreateUpdateUserDto dto) {

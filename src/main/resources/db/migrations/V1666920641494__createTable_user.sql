@@ -7,8 +7,8 @@ CREATE TABLE IF NOT EXISTS _user (
   password varchar(255) NULL,
   username varchar(255) NULL,
 
-  CONSTRAINT fk_user_created_by FOREIGN KEY (created_by) REFERENCES public._user(id),
-
   CONSTRAINT "_user_pkey" PRIMARY KEY (id)
 );
 
+
+ALTER TABLE _user ADD CONSTRAINT "fk_user_user" FOREIGN KEY (created_by) REFERENCES _user(id);

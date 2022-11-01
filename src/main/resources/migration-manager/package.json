@@ -17,6 +17,8 @@
     "refresh-packages": "rm -rf node_modules && pnpm install"
   },
   "dependencies": {
+    "@types/bcrypt": "^5.0.0",
+    "bcrypt": "^5.1.0",
     "chalk": "^5.1.2",
     "clear": "^0.1.0",
     "commander": "^9.4.1",

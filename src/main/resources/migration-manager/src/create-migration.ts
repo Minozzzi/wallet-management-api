@@ -4,13 +4,22 @@ import clear from "clear";
 import figlet from "figlet";
 import fs from "fs";
 import inquirer from "inquirer";
-import { createTableScriptTemplate } from "./scripts/ddl/create-table";
+import * as templatesScripts from "./scripts";
+
+type ScriptsProps = {
+  [key in "DDL" | "DML"]: string;
+};
 
 clear();
 
+const scriptsProps: ScriptsProps = {
+  DDL: templatesScripts.createTableScriptTemplate,
+  DML: templatesScripts.insertScriptTemplate,
+};
+
 const getUserOptions = async (): Promise<{
   filename: string;
-  commandType: string;
+  commandType: "DDL" | "DML";
   tableName: string;
 }> => {
   const answers = await inquirer.prompt([
@@ -45,10 +54,10 @@ const getUserOptions = async (): Promise<{
   };
 };
 
-const { filename, tableName } = await getUserOptions();
+const { filename, tableName, commandType } = await getUserOptions();
 const migrationFilename = `V${new Date().getTime()}__${filename}.ts`;
 
-const baseMigrationSetup = createTableScriptTemplate
+const baseMigrationSetup = scriptsProps[commandType]
   .replace("{{tablename}}", tableName)
   .replace("{{filename}}", migrationFilename);
 

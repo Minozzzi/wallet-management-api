@@ -9,19 +9,15 @@ import com.walletmanagement.modules.user.UserRepository;
 import com.walletmanagement.modules.user.dto.CreateUpdateUserDto;
 import com.walletmanagement.modules.user.dto.CreateUserResponseDto;
 
+import lombok.RequiredArgsConstructor;
+
 @Service
+@RequiredArgsConstructor
 public class CreateUserService implements ICreateUserService {
 
   private final UserRepository userRepository;
   private final ModelMapper mapper;
-
-  private BCryptPasswordEncoder passwordEncoder;
-
-  public CreateUserService(UserRepository userRepository, ModelMapper mapper) {
-    this.userRepository = userRepository;
-    this.mapper = mapper;
-    this.passwordEncoder = new BCryptPasswordEncoder();
-  }
+  private final BCryptPasswordEncoder passwordEncoder;
 
   public CreateUserResponseDto execute(CreateUpdateUserDto user) {
     user.setPassword(passwordEncoder.encode(user.getPassword()));

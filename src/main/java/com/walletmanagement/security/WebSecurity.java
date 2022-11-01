@@ -9,23 +9,20 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.SecurityFilterChain;
 
+import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 
 @EnableWebSecurity
 @Configuration
+@RequiredArgsConstructor
 public class WebSecurity {
 
   private final AuthService authService;
   private final AuthenticationEntryPoint authenticationEntryPoint;
-
-  public WebSecurity(AuthService authService, AuthenticationEntryPoint authenticationEntryPoint) {
-    this.authService = authService;
-    this.authenticationEntryPoint = authenticationEntryPoint;
-  }
+  private final BCryptPasswordEncoder passwordEncoder;
 
   @Bean
   @SneakyThrows
@@ -35,7 +32,7 @@ public class WebSecurity {
 
     authenticationManagerBuilder
         .userDetailsService(authService)
-        .passwordEncoder(this.passwordEncoder());
+        .passwordEncoder(this.passwordEncoder);
 
     AuthenticationManager authenticationManager = authenticationManagerBuilder.build();
 
@@ -65,11 +62,6 @@ public class WebSecurity {
         .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
     return http.build();
-  }
-
-  @Bean
-  public PasswordEncoder passwordEncoder() {
-    return new BCryptPasswordEncoder();
   }
 
 }
