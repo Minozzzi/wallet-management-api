@@ -41,6 +41,7 @@ public class UserControllerTest extends BaseTest<UserEntity, UserRepository> {
 
     CreateUserResponseDto returnedUser = response.getBody();
 
+    Assertions.assertNotNull(returnedUser);
     Assertions.assertEquals(CreateUserResponseDto.class, returnedUser.getClass());
     Assertions.assertEquals(true, new IsUUID().matchesSafely(returnedUser.getId()));
     Assertions.assertEquals(user.getName(), returnedUser.getName());
@@ -57,6 +58,8 @@ public class UserControllerTest extends BaseTest<UserEntity, UserRepository> {
 
     Assertions.assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
 
+
+    Assertions.assertNotNull(error);
     Assertions.assertEquals(ApiError.class, error.getClass());
     Assertions.assertEquals("validation error", error.getMessage());
     Assertions.assertEquals("/api/v1/user", error.getUrl());
@@ -75,6 +78,7 @@ public class UserControllerTest extends BaseTest<UserEntity, UserRepository> {
 
     Assertions.assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
 
+    Assertions.assertNotNull(error);
     Assertions.assertEquals(ApiError.class, error.getClass());
     Assertions.assertEquals("validation error", error.getMessage());
     Assertions.assertEquals("/api/v1/user", error.getUrl());
@@ -95,6 +99,7 @@ public class UserControllerTest extends BaseTest<UserEntity, UserRepository> {
 
     Assertions.assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
 
+    Assertions.assertNotNull(error);
     Assertions.assertEquals(ApiError.class, error.getClass());
     Assertions.assertEquals("validation error", error.getMessage());
     Assertions.assertEquals("/api/v1/user", error.getUrl());
