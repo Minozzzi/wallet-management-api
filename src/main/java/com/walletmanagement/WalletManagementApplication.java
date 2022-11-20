@@ -61,24 +61,24 @@ public class WalletManagementApplication {
     dsv.setTimeout(120);
     dsv.setInterval(7);
     dsv.afterPropertiesSet();
-    
+
     return dsv;
   }
 
   @Bean
   public WebMvcConfigurer corsConfigurer() {
     return new WebMvcConfigurer() {
-
       @Override
       public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-            .allowedOrigins("localhost:3000")
-            .allowedMethods("GET", "POST", "PUT", "PATCH", "OPTIONS", "DELETE")
-            .allowedHeaders("Authorization", "x-xsrf-token", "Access-Control-Allow-Headers", "Origin",
-                "Accept", "X-Requested-With", "Content-Type", "Access-Control-Request-Method",
+            .allowedOrigins("*")
+            .allowedMethods("GET", "POST", "PATCH", "OPTIONS", "DELETE")
+            .allowedHeaders("Authorization", "x-xsrf-token",
+                "Access-Control-Allow-Headers", "Origin",
+                "Accept", "X-Requested-With", "Content-Type",
+                "Access-Control-Request-Method",
                 "Access-Control-Request-Headers", "Auth-Id-Token");
       }
-
     };
   }
 

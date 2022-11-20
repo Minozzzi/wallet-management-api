@@ -41,6 +41,8 @@ public class WebSecurity {
         .exceptionHandling()
         .authenticationEntryPoint(authenticationEntryPoint)
         .and()
+        .cors()
+        .and()
         .authorizeRequests()
         .antMatchers(HttpMethod.POST, "/user/**")
         .permitAll()
